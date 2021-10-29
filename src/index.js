@@ -16,14 +16,28 @@ const Theme = {
     LIGHT: 'light-theme',
     DARK: 'dark-theme',
   };
-body.classList.add(`${Theme.LIGHT}`);
+
+const getThemeFromLocalStorage = function () {
+  if(localStorage.getItem('current_theme')) {
+    body.classList = localStorage.getItem('current_theme');
+  } else {
+    body.classList.add(`${Theme.LIGHT}`);
+  };
+  
+  if(body.classList.contains(`${Theme.DARK}`)) {
+        themeInput.checked = true;
+      };
+};
+getThemeFromLocalStorage();
 
 const onInputThemeChange = function () {
   if(body.classList.contains(`${Theme.LIGHT}`)) {
-    console.log(55);
     body.classList.replace(`${Theme.LIGHT}`, `${Theme.DARK}`);
-  }; body.classList.replace(`${Theme.DARK}`, `${Theme.LIGHT}`);    
-
+  } else {
+    body.classList.replace(`${Theme.DARK}`, `${Theme.LIGHT}`);
+    
+  };
+  localStorage.setItem('current_theme', body.classList);
 };
 
 themeInput.addEventListener('change', onInputThemeChange);
