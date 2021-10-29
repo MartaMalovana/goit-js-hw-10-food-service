@@ -3,7 +3,7 @@ import element from './templates/menu_element.hbs';
 import ingredients from './menu.json';
 
 const menuElements = function () {
-    return ingredients.map(element).join();
+    return ingredients.map(element).join('');
 };
 
 const menuListRef = document.querySelector('ul.js-menu');
